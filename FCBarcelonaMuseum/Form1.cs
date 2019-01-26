@@ -80,7 +80,7 @@ namespace FCBarcelonaMuseum
                         return; 
                     } else
                     {
-                        occupation = cmbOccupation.SelectedText;
+                        occupation = cmbOccupation.Text;
                     }
 
                     String gender;
@@ -108,8 +108,26 @@ namespace FCBarcelonaMuseum
                     //{
                     //    MessageBox.Show("The musuem is now close, please visit between 10 AM and 5 PM");
                     //}
-                    String visitorName = txtName.Text;
-                    String phNo = txtPhNo.Text;
+                    String visitorName;
+                    if (txtName.Text.Equals(""))
+                    {
+                        MessageBox.Show("The name field is empty!");
+                        return;
+                    }
+                    else
+                    {
+                        visitorName = txtName.Text;
+                    }
+                    String phNo;
+                    if (txtPhNo.Text.Equals(""))
+                    {
+                        MessageBox.Show("The name field is empty!");
+                        return;
+                    }
+                    else
+                    {
+                        phNo = txtPhNo.Text;
+                    }
                     Visitors visitors = new Visitors(cardNo, visitorName, phNo, email, occupation, gender, inTime, outTime, day);
                     LsVisitors.Add(visitors);
                     String data = cardNo + "," + visitorName + "," + phNo + "," + email + "," + occupation + "," + gender + "," + inTime + "," + outTime + "," + day;
@@ -196,15 +214,36 @@ namespace FCBarcelonaMuseum
         private void btnCheckIn_Click(object sender, EventArgs e)
         {
             int cardNo = int.Parse(txtCardNo.Text);
+            int cNo = 0;
+            String name = "";
+            String phNo = "";
+            String email = "";
+            String occupation = "";
+            String gender = "";
+            DateTime inTime = DateTime.Now;
+            DateTime outTime = default(DateTime);
+            DayOfWeek day = inTime.DayOfWeek;
             foreach(Visitors v in LsVisitors)
             {
                 if(v.CardNo == cardNo)
                 {
-                    String data = v.CardNo + "," + v.Name + "," + v.PhNo + "," + v.Email + "," + v.Occupation + "," + v.Gender + "," + v.InTime + "," + v.OutTime + "," + v.Day;
-                    ToCSV(data);
-                    LoadGrid();
+                    cNo = v.CardNo;
+                    name = v.Name;
+                    phNo = v.PhNo;
+                    email = v.Email;
+                    occupation = v.Occupation;
+                    gender = v.Gender;
+                } else
+                {
+                    MessageBox.Show("The card number is invalid!");
+                    return;
                 }
             }
+            Visitors visit = new Visitors(cNo, name, phNo, email, occupation, gender, inTime, outTime, day);
+            LsVisitors.Add(visit);
+            String data = cNo + "," + name + "," + phNo + "," + email + "," + occupation + "," + gender + "," + inTime + "," + outTime + "," + day;
+            ToCSV(data);
+            LoadGrid();
         }
     }
 }
