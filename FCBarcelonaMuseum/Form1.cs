@@ -73,7 +73,16 @@ namespace FCBarcelonaMuseum
 
                     }
                     String email = txtEmail.Text;
-                    String occupation = cmbOccupation.Text;
+                    String occupation;
+                    if(cmbOccupation.SelectedText.Equals("Select an occupation"))
+                    {
+                        MessageBox.Show("Please select an occupation");
+                        return; 
+                    } else
+                    {
+                        occupation = cmbOccupation.SelectedText;
+                    }
+
                     String gender;
 
                     if (radMale.Checked)
@@ -84,15 +93,29 @@ namespace FCBarcelonaMuseum
                     {
                         gender = radFemale.Text;
                     }
+                    
                     DateTime inTime = DateTime.Now;
                     DateTime outTime = default(DateTime);
+                    TimeSpan opens = new TimeSpan(10, 0, 0);
+                    TimeSpan closes = new TimeSpan(17, 0, 0);
                     DayOfWeek day = inTime.DayOfWeek;
+                    //if(day == DayOfWeek.Saturday || day == DayOfWeek.Sunday)
+                    //{
+                    //    MessageBox.Show("The museum is closed.");
+                    //} else if(inTime.TimeOfDay > opens && inTime.TimeOfDay < closes) {
+                    //    return;
+                    //} else
+                    //{
+                    //    MessageBox.Show("The musuem is now close, please visit between 10 AM and 5 PM");
+                    //}
                     String visitorName = txtName.Text;
                     String phNo = txtPhNo.Text;
                     Visitors visitors = new Visitors(cardNo, visitorName, phNo, email, occupation, gender, inTime, outTime, day);
                     LsVisitors.Add(visitors);
                     String data = cardNo + "," + visitorName + "," + phNo + "," + email + "," + occupation + "," + gender + "," + inTime + "," + outTime + "," + day;
                     ToCSV(data);
+                    LoadGrid();
+                   
                 }
 
 
@@ -108,37 +131,50 @@ namespace FCBarcelonaMuseum
 
         public void LoadGrid()
         {
-            String path = @"Data.csv";
-            using (StreamReader reader = new StreamReader(path))
+            try
             {
-                String line = "";
-                if (File.Exists(path))
+                String path = @"Data.csv";
+                using (StreamReader reader = new StreamReader(path))
                 {
-                    while (!reader.EndOfStream)
+                    String line = "";
+                    if (File.Exists(path))
                     {
-                        line = reader.ReadLine();
-                        String[] rowData = line.Split(',');
-                        int rowNum = dataGridTable.Rows.Add();
-                        DataGridViewRow row = dataGridTable.Rows[rowNum];
+                        dataGridTable.Rows.Clear();
+                        while (!reader.EndOfStream)
+                        {
+                            line = reader.ReadLine();
+                            String[] rowData = line.Split(',');
+                            int rowNum = dataGridTable.Rows.Add();
+                            DataGridViewRow row = dataGridTable.Rows[rowNum];
 
-                        row.Cells["ColnCardNum"].Value = rowData[0];
-                        row.Cells["ColnFullName"].Value = rowData[1];
-                        row.Cells["ColnPhNum"].Value = rowData[2];
-                        row.Cells["ColnEmail"].Value = rowData[3];
-                        row.Cells["ColnOccupation"].Value = rowData[4];
-                        row.Cells["ColnGender"].Value = rowData[5];
-                        row.Cells["ColnInTime"].Value = rowData[6];
-                        row.Cells["ColnDay"].Value = rowData[8];
 
-                        Visitors visitors = new Visitors(int.Parse(rowData[0]), rowData[1], rowData[2], rowData[3], rowData[4],rowData[5], DateTime.Parse(rowData[6]), DateTime.Parse(rowData[7]), DateTime.Parse(rowData[6]).DayOfWeek);
+                            row.Cells["ColnCardNum"].Value = rowData[0];
+                            row.Cells["ColnFullName"].Value = rowData[1];
+                            row.Cells["ColnPhNum"].Value = rowData[2];
+                            row.Cells["ColnEmail"].Value = rowData[3];
+                            row.Cells["ColnOccupation"].Value = rowData[4];
+                            row.Cells["ColnGender"].Value = rowData[5];
+                            row.Cells["ColnInTime"].Value = rowData[6];
+                            DateTime outTime = DateTime.Parse(rowData[7]);
+                            if (!outTime.Equals(default(DateTime)))
+                            {
+                                row.Cells["ColnOutTime"].Value = outTime;
+                            }
+                            row.Cells["ColnDay"].Value = rowData[8];
 
-                        LsVisitors.Add(visitors);
+                            Visitors visitors = new Visitors(int.Parse(rowData[0]), rowData[1], rowData[2], rowData[3], rowData[4], rowData[5], DateTime.Parse(rowData[6]), DateTime.Parse(rowData[7]), DateTime.Parse(rowData[6]).DayOfWeek);
+
+                            LsVisitors.Add(visitors);
+
+                        }
+
 
                     }
 
-
                 }
-
+            } catch (Exception e)
+            {
+                MessageBox.Show("Error while loading data from the csv file.");
             }
         }
 
@@ -155,6 +191,20 @@ namespace FCBarcelonaMuseum
         {
             cmbOccupation.SelectedItem = null;
             cmbOccupation.SelectedText = "Select an occupation";
+        }
+
+        private void btnCheckIn_Click(object sender, EventArgs e)
+        {
+            int cardNo = int.Parse(txtCardNo.Text);
+            foreach(Visitors v in LsVisitors)
+            {
+                if(v.CardNo == cardNo)
+                {
+                    String data = v.CardNo + "," + v.Name + "," + v.PhNo + "," + v.Email + "," + v.Occupation + "," + v.Gender + "," + v.InTime + "," + v.OutTime + "," + v.Day;
+                    ToCSV(data);
+                    LoadGrid();
+                }
+            }
         }
     }
 }

@@ -332,6 +332,7 @@
             this.btnCheckIn.TabIndex = 30;
             this.btnCheckIn.Text = "Check In";
             this.btnCheckIn.UseVisualStyleBackColor = true;
+            this.btnCheckIn.Click += new System.EventHandler(this.btnCheckIn_Click);
             // 
             // txtCardNo
             // 
