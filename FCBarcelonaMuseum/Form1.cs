@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,7 +19,7 @@ namespace FCBarcelonaMuseum
         public Form1()
         {
             InitializeComponent();
-            Load();
+            LoadGrid();
         }
 
         public void ToCSV(String data)
@@ -39,50 +40,60 @@ namespace FCBarcelonaMuseum
         {
             try
             {
-                int cardNo = 0;
-                String path = @"Data.csv";
-                if (!File.Exists(path))
+                Regex rx = new Regex(@"^98*([0-9]{8})$");
+                Regex rgx = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                
+                
+                if (!rx.IsMatch(txtPhNo.Text) || cmbOccupation.SelectedText.Equals("Select an occupation") || !rgx.IsMatch(txtEmail.Text))
                 {
-                    File.Create(path);
-                }
-                using (StreamReader reader = new StreamReader(path))
-                {
-                    String line = "";
-                    if (File.Exists(@"Data.csv"))
-                    {
-                        while (!reader.EndOfStream)
-                        {
-                            line = reader.ReadLine();
-                            String[] rowData = line.Split(',');
-                            cardNo = int.Parse(rowData[0]);
-                        }
-
-                        cardNo = ++cardNo;
-                    }
-
-                }
-
-                String visitorName = txtName.Text;
-                String phNo = txtPhNo.Text;
-                String occupation = cmbOccupation.Text;
-                String gender;
-
-                if (radMale.Checked)
-                {
-                    gender = radMale.Text;
+                    btnClearAll.PerformClick();
                 }
                 else
                 {
-                    gender = radFemale.Text;
-                }
-                DateTime inTime = DateTime.Now;
-                DateTime outTime = default(DateTime);
-                DayOfWeek day = inTime.DayOfWeek;
-                Visitors visitors = new Visitors(cardNo, visitorName, phNo, occupation, gender, inTime, outTime, day);
-                LsVisitors.Add(visitors);
-                String data = cardNo + "," + visitorName + "," + phNo + "," + occupation + "," + gender + "," + inTime + "," +outTime+","+ day;
-                ToCSV(data);
+                    int cardNo = 0;
+                    String path = @"Data.csv";
+                    if (!File.Exists(path))
+                    {
+                        File.Create(path);
+                    }
+                    using (StreamReader reader = new StreamReader(path))
+                    {
+                        String line = "";
+                        if (File.Exists(@"Data.csv"))
+                        {
+                            while (!reader.EndOfStream)
+                            {
+                                line = reader.ReadLine();
+                                String[] rowData = line.Split(',');
+                                cardNo = int.Parse(rowData[0]);
+                            }
 
+                            cardNo = ++cardNo;
+                        }
+
+                    }
+                    String email = txtEmail.Text;
+                    String occupation = cmbOccupation.Text;
+                    String gender;
+
+                    if (radMale.Checked)
+                    {
+                        gender = radMale.Text;
+                    }
+                    else
+                    {
+                        gender = radFemale.Text;
+                    }
+                    DateTime inTime = DateTime.Now;
+                    DateTime outTime = default(DateTime);
+                    DayOfWeek day = inTime.DayOfWeek;
+                    String visitorName = txtName.Text;
+                    String phNo = txtPhNo.Text;
+                    Visitors visitors = new Visitors(cardNo, visitorName, phNo, email, occupation, gender, inTime, outTime, day);
+                    LsVisitors.Add(visitors);
+                    String data = cardNo + "," + visitorName + "," + phNo + "," + email + "," + occupation + "," + gender + "," + inTime + "," + outTime + "," + day;
+                    ToCSV(data);
+                }
 
 
             }
@@ -95,7 +106,7 @@ namespace FCBarcelonaMuseum
         }
 
 
-        public void Load()
+        public void LoadGrid()
         {
             String path = @"Data.csv";
             using (StreamReader reader = new StreamReader(path))
@@ -113,12 +124,13 @@ namespace FCBarcelonaMuseum
                         row.Cells["ColnCardNum"].Value = rowData[0];
                         row.Cells["ColnFullName"].Value = rowData[1];
                         row.Cells["ColnPhNum"].Value = rowData[2];
-                        row.Cells["ColnOccupation"].Value = rowData[3];
-                        row.Cells["ColnGender"].Value = rowData[4];
-                        row.Cells["ColnInTime"].Value = rowData[5];
-                        row.Cells["ColnDay"].Value = rowData[7];
+                        row.Cells["ColnEmail"].Value = rowData[3];
+                        row.Cells["ColnOccupation"].Value = rowData[4];
+                        row.Cells["ColnGender"].Value = rowData[5];
+                        row.Cells["ColnInTime"].Value = rowData[6];
+                        row.Cells["ColnDay"].Value = rowData[8];
 
-                        Visitors visitors = new Visitors(int.Parse(rowData[0]), rowData[1], rowData[2], rowData[3], rowData[4], DateTime.Parse(rowData[5]), DateTime.Parse(rowData[6]), DateTime.Parse(rowData[5]).DayOfWeek);
+                        Visitors visitors = new Visitors(int.Parse(rowData[0]), rowData[1], rowData[2], rowData[3], rowData[4],rowData[5], DateTime.Parse(rowData[6]), DateTime.Parse(rowData[7]), DateTime.Parse(rowData[6]).DayOfWeek);
 
                         LsVisitors.Add(visitors);
 
@@ -128,6 +140,22 @@ namespace FCBarcelonaMuseum
                 }
 
             }
+        }
+
+        private void btnClearAll_Click(object sender, EventArgs e)
+        {
+            txtName.Text = "";
+            txtPhNo.Text = "";
+            cmbOccupation.SelectedText = "Select an occupation";
+            txtEmail.Text = "";
+            radMale.Checked = true;
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cmbOccupation.SelectedItem = null;
+            cmbOccupation.SelectedText = "Select an occupation";
         }
     }
 }
