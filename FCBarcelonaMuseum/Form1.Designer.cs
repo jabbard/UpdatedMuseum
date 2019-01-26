@@ -30,6 +30,8 @@
         {
             this.labelMuseumName = new System.Windows.Forms.Label();
             this.groupBoxNewVisitor = new System.Windows.Forms.GroupBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.labelEmail = new System.Windows.Forms.Label();
             this.btnClearAll = new System.Windows.Forms.Button();
             this.labelGender = new System.Windows.Forms.Label();
             this.grpGender = new System.Windows.Forms.GroupBox();
@@ -43,12 +45,6 @@
             this.labelOccupation = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.dataGridTable = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnCheckIn = new System.Windows.Forms.Button();
-            this.txtCardNo = new System.Windows.Forms.TextBox();
-            this.labelCardNo = new System.Windows.Forms.Label();
-            this.labelEmail = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
             this.ColnCardNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColnFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColnPhNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +54,10 @@
             this.ColnInTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColnOutTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColnDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCheckIn = new System.Windows.Forms.Button();
+            this.txtCardNo = new System.Windows.Forms.TextBox();
+            this.labelCardNo = new System.Windows.Forms.Label();
             this.groupBoxNewVisitor.SuspendLayout();
             this.grpGender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTable)).BeginInit();
@@ -67,7 +67,7 @@
             // labelMuseumName
             // 
             this.labelMuseumName.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMuseumName.Location = new System.Drawing.Point(589, 27);
+            this.labelMuseumName.Location = new System.Drawing.Point(693, 20);
             this.labelMuseumName.Name = "labelMuseumName";
             this.labelMuseumName.Size = new System.Drawing.Size(400, 50);
             this.labelMuseumName.TabIndex = 1;
@@ -91,12 +91,29 @@
             this.groupBoxNewVisitor.Controls.Add(this.labelName);
             this.groupBoxNewVisitor.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxNewVisitor.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBoxNewVisitor.Location = new System.Drawing.Point(63, 76);
+            this.groupBoxNewVisitor.Location = new System.Drawing.Point(19, 91);
             this.groupBoxNewVisitor.Name = "groupBoxNewVisitor";
             this.groupBoxNewVisitor.Size = new System.Drawing.Size(547, 396);
             this.groupBoxNewVisitor.TabIndex = 15;
             this.groupBoxNewVisitor.TabStop = false;
             this.groupBoxNewVisitor.Text = "Visitor\'s data";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(245, 163);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(280, 36);
+            this.txtEmail.TabIndex = 31;
+            // 
+            // labelEmail
+            // 
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEmail.Location = new System.Drawing.Point(17, 169);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(64, 23);
+            this.labelEmail.TabIndex = 30;
+            this.labelEmail.Text = "Email:";
             // 
             // btnClearAll
             // 
@@ -247,64 +264,6 @@
             this.dataGridTable.Size = new System.Drawing.Size(934, 597);
             this.dataGridTable.TabIndex = 29;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnCheckIn);
-            this.groupBox1.Controls.Add(this.txtCardNo);
-            this.groupBox1.Controls.Add(this.labelCardNo);
-            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox1.Location = new System.Drawing.Point(19, 501);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(547, 187);
-            this.groupBox1.TabIndex = 30;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Old Visitor";
-            // 
-            // btnCheckIn
-            // 
-            this.btnCheckIn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckIn.Location = new System.Drawing.Point(176, 126);
-            this.btnCheckIn.Name = "btnCheckIn";
-            this.btnCheckIn.Size = new System.Drawing.Size(139, 35);
-            this.btnCheckIn.TabIndex = 30;
-            this.btnCheckIn.Text = "Check In";
-            this.btnCheckIn.UseVisualStyleBackColor = true;
-            // 
-            // txtCardNo
-            // 
-            this.txtCardNo.Location = new System.Drawing.Point(204, 59);
-            this.txtCardNo.Name = "txtCardNo";
-            this.txtCardNo.Size = new System.Drawing.Size(280, 36);
-            this.txtCardNo.TabIndex = 29;
-            // 
-            // labelCardNo
-            // 
-            this.labelCardNo.AutoSize = true;
-            this.labelCardNo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCardNo.Location = new System.Drawing.Point(17, 62);
-            this.labelCardNo.Name = "labelCardNo";
-            this.labelCardNo.Size = new System.Drawing.Size(89, 23);
-            this.labelCardNo.TabIndex = 0;
-            this.labelCardNo.Text = "Card No.";
-            // 
-            // labelEmail
-            // 
-            this.labelEmail.AutoSize = true;
-            this.labelEmail.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEmail.Location = new System.Drawing.Point(17, 169);
-            this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(64, 23);
-            this.labelEmail.TabIndex = 30;
-            this.labelEmail.Text = "Email:";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(245, 163);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(280, 36);
-            this.txtEmail.TabIndex = 31;
-            // 
             // ColnCardNum
             // 
             this.ColnCardNum.HeaderText = "Card No.";
@@ -350,6 +309,47 @@
             this.ColnDay.HeaderText = "Day";
             this.ColnDay.Name = "ColnDay";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnCheckIn);
+            this.groupBox1.Controls.Add(this.txtCardNo);
+            this.groupBox1.Controls.Add(this.labelCardNo);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox1.Location = new System.Drawing.Point(19, 501);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(547, 187);
+            this.groupBox1.TabIndex = 30;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Old Visitor";
+            // 
+            // btnCheckIn
+            // 
+            this.btnCheckIn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckIn.Location = new System.Drawing.Point(176, 126);
+            this.btnCheckIn.Name = "btnCheckIn";
+            this.btnCheckIn.Size = new System.Drawing.Size(139, 35);
+            this.btnCheckIn.TabIndex = 30;
+            this.btnCheckIn.Text = "Check In";
+            this.btnCheckIn.UseVisualStyleBackColor = true;
+            // 
+            // txtCardNo
+            // 
+            this.txtCardNo.Location = new System.Drawing.Point(204, 59);
+            this.txtCardNo.Name = "txtCardNo";
+            this.txtCardNo.Size = new System.Drawing.Size(280, 36);
+            this.txtCardNo.TabIndex = 29;
+            // 
+            // labelCardNo
+            // 
+            this.labelCardNo.AutoSize = true;
+            this.labelCardNo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCardNo.Location = new System.Drawing.Point(17, 62);
+            this.labelCardNo.Name = "labelCardNo";
+            this.labelCardNo.Size = new System.Drawing.Size(89, 23);
+            this.labelCardNo.TabIndex = 0;
+            this.labelCardNo.Text = "Card No.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -360,6 +360,7 @@
             this.Controls.Add(this.groupBoxNewVisitor);
             this.Controls.Add(this.labelMuseumName);
             this.Name = "Form1";
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxNewVisitor.ResumeLayout(false);
@@ -381,7 +382,6 @@
         private System.Windows.Forms.RadioButton radMale;
         private System.Windows.Forms.RadioButton radFemale;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.ComboBox cmbOccupation;
         private System.Windows.Forms.TextBox txtPhNo;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label labelPhNo;
@@ -404,6 +404,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColnInTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColnOutTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColnDay;
+        private System.Windows.Forms.ComboBox cmbOccupation;
     }
 }
 

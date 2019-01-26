@@ -149,7 +149,6 @@ namespace FCBarcelonaMuseum
             cmbOccupation.SelectedText = "Select an occupation";
             txtEmail.Text = "";
             radMale.Checked = true;
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
