@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace FCBarcelonaMuseum
 {
-    public partial class Form1 : Form
+    public partial class HomePage : Form
     {
         public List<Visitors> LsVisitors = new List<Visitors>();
 
-        public Form1()
+        public HomePage()
         {
             InitializeComponent();
             LoadGrid();
@@ -44,7 +44,7 @@ namespace FCBarcelonaMuseum
                 Regex rgx = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 
                 
-                if ((!rx.IsMatch(txtPhNo.Text)&& String.IsNullOrEmpty(txtPhNo.Text.Trim())) || cmbOccupation.SelectedText.Equals("Select an occupation") || (!rgx.IsMatch(txtEmail.Text) && String.IsNullOrEmpty(txtEmail.Text.Trim())))
+                if ((!rx.IsMatch(txtPhNo.Text) || String.IsNullOrEmpty(txtPhNo.Text.Trim())) || cmbOccupation.SelectedText.Equals("Select an occupation") || (!rgx.IsMatch(txtEmail.Text) || String.IsNullOrEmpty(txtEmail.Text.Trim())))
                 {
                     MessageBox.Show("Please enter the correct data.");
                     btnClearAll.PerformClick();
@@ -52,6 +52,7 @@ namespace FCBarcelonaMuseum
                 else
                 {
                     int cardNo = 0;
+                    
                     String path = @"Data.csv";
                     if (!File.Exists(path))
                     {
@@ -62,14 +63,33 @@ namespace FCBarcelonaMuseum
                         String line = "";
                         if (File.Exists(@"Data.csv"))
                         {
+                            int[] cN = new int[dataGridTable.RowCount];
+                            int counter = 0;
                             while (!reader.EndOfStream)
                             {
                                 line = reader.ReadLine();
                                 String[] rowData = line.Split(',');
                                 cardNo = int.Parse(rowData[0]);
+                                cN[counter] = int.Parse(rowData[0]);
+                                counter++;
                             }
-
-                            cardNo = ++cardNo;
+                            int greatest = 0;
+                            for(int i =0; i<cN.Length; i++)
+                            {
+                                if (cN[i] > greatest)
+                                {
+                                    greatest = cN[i];
+                                }
+                            }
+                            if (cardNo >= greatest)
+                            {
+                                cardNo = ++cardNo;
+                            }
+                            else
+                            {
+                                cardNo = greatest + 1;
+                            }
+                            
                         }
 
                     }
@@ -81,7 +101,7 @@ namespace FCBarcelonaMuseum
                     }
                     else
                     {
-                        visitorName = txtName.Text;
+                        visitorName = txtName.Text.Trim();
                     }
                     String email;
                     if (String.IsNullOrEmpty(txtEmail.Text.Trim()))
@@ -91,7 +111,7 @@ namespace FCBarcelonaMuseum
                     }
                     else
                     {
-                        email = txtEmail.Text;
+                        email = txtEmail.Text.Trim();
                     }
                     String occupation;
                     if(cmbOccupation.Text.Equals("Select an occupation"))
@@ -138,7 +158,7 @@ namespace FCBarcelonaMuseum
                     }
                     else
                     {
-                        phNo = txtPhNo.Text;
+                        phNo = txtPhNo.Text.Trim();
                     }
                     Visitors visitors = new Visitors(cardNo, visitorName, phNo, email, occupation, gender, inTime, outTime, day);
                     LsVisitors.Add(visitors);
@@ -291,6 +311,9 @@ namespace FCBarcelonaMuseum
                             writer.WriteLine(lines[currentLine - 1]);
                             MessageBox.Show("The user has already checked out.");
                             txtCardNoOut.Text = "";
+                        } else
+                        {
+                            writer.WriteLine(lines[currentLine - 1]);
                         }
                     }
                 }

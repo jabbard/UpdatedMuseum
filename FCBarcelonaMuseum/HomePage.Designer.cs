@@ -1,6 +1,6 @@
 ﻿namespace FCBarcelonaMuseum
 {
-    partial class Form1
+    partial class HomePage
     {
         /// <summary>
         /// Required designer variable.
@@ -274,7 +274,6 @@
             this.dataGridTable.RowTemplate.Height = 24;
             this.dataGridTable.Size = new System.Drawing.Size(934, 507);
             this.dataGridTable.TabIndex = 29;
-            this.dataGridTable.SelectionChanged += new System.EventHandler(this.dataGridTable_SelectionChanged);
             // 
             // ColnCardNum
             // 
