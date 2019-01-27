@@ -44,8 +44,9 @@ namespace FCBarcelonaMuseum
                 Regex rgx = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 
                 
-                if (!rx.IsMatch(txtPhNo.Text) || cmbOccupation.SelectedText.Equals("Select an occupation") || !rgx.IsMatch(txtEmail.Text))
+                if ((!rx.IsMatch(txtPhNo.Text)&& String.IsNullOrEmpty(txtPhNo.Text.Trim())) || cmbOccupation.SelectedText.Equals("Select an occupation") || (!rgx.IsMatch(txtEmail.Text) && String.IsNullOrEmpty(txtEmail.Text.Trim())))
                 {
+                    MessageBox.Show("Please enter the correct data.");
                     btnClearAll.PerformClick();
                 }
                 else
@@ -72,8 +73,18 @@ namespace FCBarcelonaMuseum
                         }
 
                     }
+                    String visitorName;
+                    if (String.IsNullOrEmpty(txtName.Text.Trim()))
+                    {
+                        MessageBox.Show("The name field is empty!");
+                        return;
+                    }
+                    else
+                    {
+                        visitorName = txtName.Text;
+                    }
                     String email;
-                    if (txtEmail.Text.Equals(""))
+                    if (String.IsNullOrEmpty(txtEmail.Text.Trim()))
                     {
                         MessageBox.Show("The name field is empty!");
                         return;
@@ -83,9 +94,10 @@ namespace FCBarcelonaMuseum
                         email = txtEmail.Text;
                     }
                     String occupation;
-                    if(cmbOccupation.SelectedText.Equals("Select an occupation"))
+                    if(cmbOccupation.Text.Equals("Select an occupation"))
                     {
                         MessageBox.Show("Please select an occupation");
+                        btnClearAll.PerformClick();
                         return; 
                     } else
                     {
@@ -117,18 +129,9 @@ namespace FCBarcelonaMuseum
                     //{
                     //    MessageBox.Show("The musuem is now close, please visit between 10 AM and 5 PM");
                     //}
-                    String visitorName;
-                    if (txtName.Text.Equals(""))
-                    {
-                        MessageBox.Show("The name field is empty!");
-                        return;
-                    }
-                    else
-                    {
-                        visitorName = txtName.Text;
-                    }
+                    
                     String phNo;
-                    if (txtPhNo.Text.Equals(""))
+                    if (String.IsNullOrEmpty(txtPhNo.Text.Trim()))
                     {
                         MessageBox.Show("The name field is empty!");
                         return;
@@ -268,8 +271,8 @@ namespace FCBarcelonaMuseum
 
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 int cardNo = int.Parse(txtCardNoOut.Text);
                 
                 String[] lines = File.ReadAllLines(@"Data.csv");
@@ -291,18 +294,18 @@ namespace FCBarcelonaMuseum
                         }
                     }
                 }
-            LoadGrid();
+                LoadGrid();
 
 
-            //}
-            //catch (Exception error)
-            //{
-            //    MessageBox.Show("btnCheckOut");   
-            //}
-            
-            
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("btnCheckOut");
+            }
+
+
         }
 
-       
+
     }
 }

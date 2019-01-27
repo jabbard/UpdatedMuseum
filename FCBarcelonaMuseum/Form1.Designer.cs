@@ -62,17 +62,22 @@
             this.btnCheckOut = new System.Windows.Forms.Button();
             this.txtCardNoOut = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.weeklyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxNewVisitor.SuspendLayout();
             this.grpGender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTable)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grpCheckOut.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelMuseumName
             // 
             this.labelMuseumName.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMuseumName.Location = new System.Drawing.Point(693, 20);
+            this.labelMuseumName.Location = new System.Drawing.Point(694, 38);
             this.labelMuseumName.Name = "labelMuseumName";
             this.labelMuseumName.Size = new System.Drawing.Size(400, 50);
             this.labelMuseumName.TabIndex = 1;
@@ -399,6 +404,38 @@
             this.label1.TabIndex = 31;
             this.label1.Text = "Card No.";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reportsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1538, 28);
+            this.menuStrip1.TabIndex = 32;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.weeklyReportToolStripMenuItem,
+            this.dailyReportToolStripMenuItem});
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.reportsToolStripMenuItem.Text = "Reports";
+            // 
+            // weeklyReportToolStripMenuItem
+            // 
+            this.weeklyReportToolStripMenuItem.Name = "weeklyReportToolStripMenuItem";
+            this.weeklyReportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.weeklyReportToolStripMenuItem.Text = "Weekly Report";
+            // 
+            // dailyReportToolStripMenuItem
+            // 
+            this.dailyReportToolStripMenuItem.Name = "dailyReportToolStripMenuItem";
+            this.dailyReportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.dailyReportToolStripMenuItem.Text = "Daily Report";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -410,6 +447,8 @@
             this.Controls.Add(this.dataGridTable);
             this.Controls.Add(this.groupBoxNewVisitor);
             this.Controls.Add(this.labelMuseumName);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.Text = "Form1";
@@ -423,7 +462,10 @@
             this.groupBox1.PerformLayout();
             this.grpCheckOut.ResumeLayout(false);
             this.grpCheckOut.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -462,6 +504,10 @@
         private System.Windows.Forms.Button btnCheckOut;
         private System.Windows.Forms.TextBox txtCardNoOut;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem weeklyReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyReportToolStripMenuItem;
     }
 }
 
