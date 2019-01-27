@@ -274,6 +274,7 @@
             this.dataGridTable.RowTemplate.Height = 24;
             this.dataGridTable.Size = new System.Drawing.Size(934, 507);
             this.dataGridTable.TabIndex = 29;
+            this.dataGridTable.SelectionChanged += new System.EventHandler(this.dataGridTable_SelectionChanged);
             // 
             // ColnCardNum
             // 
@@ -429,6 +430,7 @@
             this.weeklyReportToolStripMenuItem.Name = "weeklyReportToolStripMenuItem";
             this.weeklyReportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.weeklyReportToolStripMenuItem.Text = "Weekly Report";
+            this.weeklyReportToolStripMenuItem.Click += new System.EventHandler(this.weeklyReportToolStripMenuItem_Click);
             // 
             // dailyReportToolStripMenuItem
             // 

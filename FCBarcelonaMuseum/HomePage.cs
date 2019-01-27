@@ -286,7 +286,7 @@ namespace FCBarcelonaMuseum
                             writer.WriteLine(LsVisitors[currentLine - 1].CardNo + "," + LsVisitors[currentLine - 1].Name + "," + LsVisitors[currentLine - 1].PhNo + "," + LsVisitors[currentLine - 1].Email + "," + LsVisitors[currentLine - 1].Occupation + "," + LsVisitors[currentLine - 1].Gender + "," + LsVisitors[currentLine - 1].InTime + "," + DateTime.Now + "," + LsVisitors[currentLine - 1].Day);
                             txtCardNoOut.Text = "";
                         }
-                        else
+                        else if(cardNo == LsVisitors[currentLine-1].CardNo && !LsVisitors[currentLine - 1].OutTime.Equals(default(DateTime)))
                         {
                             writer.WriteLine(lines[currentLine - 1]);
                             MessageBox.Show("The user has already checked out.");
@@ -306,6 +306,24 @@ namespace FCBarcelonaMuseum
 
         }
 
+        private void weeklyReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void dataGridTable_SelectionChanged(object sender, EventArgs e)
+        {
+            //try
+            //{
+                if (dataGridTable.Focused)
+                {
+                    String cN = dataGridTable.CurrentRow.Cells["ColnCardNum"].Value.ToString();
+                    txtCardNoOut.Text = cN;
+                }
+            //} catch(Exception errorr)
+            //{
+            //    MessageBox.Show("");
+            //}
+        }
     }
 }
