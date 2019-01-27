@@ -158,8 +158,8 @@ namespace FCBarcelonaMuseum
 
         public void LoadGrid()
         {
-            try
-            {
+            //try
+            //{
                 String path = @"Data.csv";
                 using (StreamReader reader = new StreamReader(path))
                 {
@@ -185,7 +185,7 @@ namespace FCBarcelonaMuseum
                             DateTime outTime = DateTime.Parse(rowData[7]);
                             if (!outTime.Equals(default(DateTime)))
                             {
-                                row.Cells["ColnOutTime"].Value = outTime;
+                                row.Cells["ColnOutTime"].Value = outTime.ToString("hh:mm tt");
                             }
                             row.Cells["ColnDay"].Value = rowData[8];
 
@@ -199,10 +199,11 @@ namespace FCBarcelonaMuseum
                     }
 
                 }
-            } catch (Exception e)
-            {
-                MessageBox.Show("Error while loading data from the csv file.");
-            }
+            //}
+            //catch (Exception err)
+            //{
+            //    MessageBox.Show("Error while loading data from the csv file.");
+            //}
         }
 
         private void btnClearAll_Click(object sender, EventArgs e)
@@ -235,10 +236,9 @@ namespace FCBarcelonaMuseum
                 DateTime inTime = DateTime.Now;
                 DateTime outTime = default(DateTime);
                 DayOfWeek day = inTime.DayOfWeek;
-                int counter = 0;
                 foreach (Visitors v in LsVisitors)
                 {
-                    if (v.CardNo == cardNo && counter ==0)
+                    if (v.CardNo == cardNo && !v.OutTime.Equals(default(DateTime)))
                     {
                         cNo = v.CardNo;
                         name = v.Name;
@@ -246,11 +246,11 @@ namespace FCBarcelonaMuseum
                         email = v.Email;
                         occupation = v.Occupation;
                         gender = v.Gender;
-                        counter++;
-                    }
-                    else
+                        txtCardNo.Text = "";
+                    } else if (v.CardNo == cardNo && v.OutTime.Equals(default(DateTime)))
                     {
-                        MessageBox.Show("The card number is invalid!");
+                        MessageBox.Show("This user has not exited previously.");
+                        txtCardNo.Text = "";
                         return;
                     }
                 }
@@ -265,5 +265,44 @@ namespace FCBarcelonaMuseum
                 txtCardNo.Text = "";
             }
         }
+
+        private void btnCheckOut_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
+                int cardNo = int.Parse(txtCardNoOut.Text);
+                
+                String[] lines = File.ReadAllLines(@"Data.csv");
+                using (StreamWriter writer = new StreamWriter(@"Data.csv"))
+                {
+                    for (int currentLine = 1; currentLine <= lines.Length; ++currentLine)
+                    {
+                        if (cardNo == LsVisitors[currentLine-1].CardNo && LsVisitors[currentLine-1].OutTime.Equals(default(DateTime)))
+                        {
+                            LsVisitors[currentLine - 1].OutTime = DateTime.Now;
+                            writer.WriteLine(LsVisitors[currentLine - 1].CardNo + "," + LsVisitors[currentLine - 1].Name + "," + LsVisitors[currentLine - 1].PhNo + "," + LsVisitors[currentLine - 1].Email + "," + LsVisitors[currentLine - 1].Occupation + "," + LsVisitors[currentLine - 1].Gender + "," + LsVisitors[currentLine - 1].InTime + "," + DateTime.Now + "," + LsVisitors[currentLine - 1].Day);
+                            txtCardNoOut.Text = "";
+                        }
+                        else
+                        {
+                            writer.WriteLine(lines[currentLine - 1]);
+                            MessageBox.Show("The user has already checked out.");
+                            txtCardNoOut.Text = "";
+                        }
+                    }
+                }
+            LoadGrid();
+
+
+            //}
+            //catch (Exception error)
+            //{
+            //    MessageBox.Show("btnCheckOut");   
+            //}
+            
+            
+        }
+
+       
     }
 }

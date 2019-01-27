@@ -380,6 +380,7 @@
             this.btnCheckOut.TabIndex = 30;
             this.btnCheckOut.Text = "Check Out";
             this.btnCheckOut.UseVisualStyleBackColor = true;
+            this.btnCheckOut.Click += new System.EventHandler(this.btnCheckOut_Click);
             // 
             // txtCardNoOut
             // 
