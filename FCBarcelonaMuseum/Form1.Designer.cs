@@ -58,16 +58,26 @@
             this.btnCheckIn = new System.Windows.Forms.Button();
             this.txtCardNo = new System.Windows.Forms.TextBox();
             this.labelCardNo = new System.Windows.Forms.Label();
+            this.grpCheckOut = new System.Windows.Forms.GroupBox();
+            this.btnCheckOut = new System.Windows.Forms.Button();
+            this.txtCardNoOut = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.weeklyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxNewVisitor.SuspendLayout();
             this.grpGender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTable)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.grpCheckOut.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelMuseumName
             // 
             this.labelMuseumName.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMuseumName.Location = new System.Drawing.Point(693, 20);
+            this.labelMuseumName.Location = new System.Drawing.Point(694, 38);
             this.labelMuseumName.Name = "labelMuseumName";
             this.labelMuseumName.Size = new System.Drawing.Size(400, 50);
             this.labelMuseumName.TabIndex = 1;
@@ -89,7 +99,7 @@
             this.groupBoxNewVisitor.Controls.Add(this.labelPhNo);
             this.groupBoxNewVisitor.Controls.Add(this.labelOccupation);
             this.groupBoxNewVisitor.Controls.Add(this.labelName);
-            this.groupBoxNewVisitor.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxNewVisitor.Font = new System.Drawing.Font("Century Gothic", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxNewVisitor.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.groupBoxNewVisitor.Location = new System.Drawing.Point(19, 91);
             this.groupBoxNewVisitor.Name = "groupBoxNewVisitor";
@@ -102,7 +112,7 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(245, 163);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(280, 36);
+            this.txtEmail.Size = new System.Drawing.Size(280, 34);
             this.txtEmail.TabIndex = 31;
             // 
             // labelEmail
@@ -196,21 +206,21 @@
             "Politician"});
             this.cmbOccupation.Location = new System.Drawing.Point(245, 219);
             this.cmbOccupation.Name = "cmbOccupation";
-            this.cmbOccupation.Size = new System.Drawing.Size(280, 35);
+            this.cmbOccupation.Size = new System.Drawing.Size(280, 34);
             this.cmbOccupation.TabIndex = 21;
             // 
             // txtPhNo
             // 
             this.txtPhNo.Location = new System.Drawing.Point(245, 106);
             this.txtPhNo.Name = "txtPhNo";
-            this.txtPhNo.Size = new System.Drawing.Size(280, 36);
+            this.txtPhNo.Size = new System.Drawing.Size(280, 34);
             this.txtPhNo.TabIndex = 20;
             // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(245, 48);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(280, 36);
+            this.txtName.Size = new System.Drawing.Size(280, 34);
             this.txtName.TabIndex = 18;
             // 
             // labelPhNo
@@ -245,6 +255,7 @@
             // 
             // dataGridTable
             // 
+            this.dataGridTable.AllowUserToAddRows = false;
             this.dataGridTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridTable.BackgroundColor = System.Drawing.SystemColors.ButtonShadow;
             this.dataGridTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -258,10 +269,10 @@
             this.ColnInTime,
             this.ColnOutTime,
             this.ColnDay});
-            this.dataGridTable.Location = new System.Drawing.Point(597, 91);
+            this.dataGridTable.Location = new System.Drawing.Point(597, 181);
             this.dataGridTable.Name = "dataGridTable";
             this.dataGridTable.RowTemplate.Height = 24;
-            this.dataGridTable.Size = new System.Drawing.Size(934, 597);
+            this.dataGridTable.Size = new System.Drawing.Size(934, 507);
             this.dataGridTable.TabIndex = 29;
             // 
             // ColnCardNum
@@ -314,7 +325,7 @@
             this.groupBox1.Controls.Add(this.btnCheckIn);
             this.groupBox1.Controls.Add(this.txtCardNo);
             this.groupBox1.Controls.Add(this.labelCardNo);
-            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.groupBox1.Location = new System.Drawing.Point(19, 501);
             this.groupBox1.Name = "groupBox1";
@@ -332,12 +343,13 @@
             this.btnCheckIn.TabIndex = 30;
             this.btnCheckIn.Text = "Check In";
             this.btnCheckIn.UseVisualStyleBackColor = true;
+            this.btnCheckIn.Click += new System.EventHandler(this.btnCheckIn_Click);
             // 
             // txtCardNo
             // 
             this.txtCardNo.Location = new System.Drawing.Point(204, 59);
             this.txtCardNo.Name = "txtCardNo";
-            this.txtCardNo.Size = new System.Drawing.Size(280, 36);
+            this.txtCardNo.Size = new System.Drawing.Size(280, 34);
             this.txtCardNo.TabIndex = 29;
             // 
             // labelCardNo
@@ -350,15 +362,93 @@
             this.labelCardNo.TabIndex = 0;
             this.labelCardNo.Text = "Card No.";
             // 
+            // grpCheckOut
+            // 
+            this.grpCheckOut.Controls.Add(this.label1);
+            this.grpCheckOut.Controls.Add(this.btnCheckOut);
+            this.grpCheckOut.Controls.Add(this.txtCardNoOut);
+            this.grpCheckOut.Font = new System.Drawing.Font("Century Gothic", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpCheckOut.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.grpCheckOut.Location = new System.Drawing.Point(782, 91);
+            this.grpCheckOut.Name = "grpCheckOut";
+            this.grpCheckOut.Size = new System.Drawing.Size(749, 84);
+            this.grpCheckOut.TabIndex = 31;
+            this.grpCheckOut.TabStop = false;
+            this.grpCheckOut.Text = "Checkout";
+            // 
+            // btnCheckOut
+            // 
+            this.btnCheckOut.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckOut.Location = new System.Drawing.Point(591, 36);
+            this.btnCheckOut.Name = "btnCheckOut";
+            this.btnCheckOut.Size = new System.Drawing.Size(139, 35);
+            this.btnCheckOut.TabIndex = 30;
+            this.btnCheckOut.Text = "Check Out";
+            this.btnCheckOut.UseVisualStyleBackColor = true;
+            this.btnCheckOut.Click += new System.EventHandler(this.btnCheckOut_Click);
+            // 
+            // txtCardNoOut
+            // 
+            this.txtCardNoOut.Location = new System.Drawing.Point(202, 37);
+            this.txtCardNoOut.Name = "txtCardNoOut";
+            this.txtCardNoOut.Size = new System.Drawing.Size(336, 34);
+            this.txtCardNoOut.TabIndex = 29;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(95, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 23);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Card No.";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reportsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1538, 28);
+            this.menuStrip1.TabIndex = 32;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.weeklyReportToolStripMenuItem,
+            this.dailyReportToolStripMenuItem});
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.reportsToolStripMenuItem.Text = "Reports";
+            // 
+            // weeklyReportToolStripMenuItem
+            // 
+            this.weeklyReportToolStripMenuItem.Name = "weeklyReportToolStripMenuItem";
+            this.weeklyReportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.weeklyReportToolStripMenuItem.Text = "Weekly Report";
+            // 
+            // dailyReportToolStripMenuItem
+            // 
+            this.dailyReportToolStripMenuItem.Name = "dailyReportToolStripMenuItem";
+            this.dailyReportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.dailyReportToolStripMenuItem.Text = "Daily Report";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1558, 725);
+            this.Controls.Add(this.grpCheckOut);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridTable);
             this.Controls.Add(this.groupBoxNewVisitor);
             this.Controls.Add(this.labelMuseumName);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.Text = "Form1";
@@ -370,7 +460,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTable)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.grpCheckOut.ResumeLayout(false);
+            this.grpCheckOut.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -405,6 +500,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColnOutTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColnDay;
         private System.Windows.Forms.ComboBox cmbOccupation;
+        private System.Windows.Forms.GroupBox grpCheckOut;
+        private System.Windows.Forms.Button btnCheckOut;
+        private System.Windows.Forms.TextBox txtCardNoOut;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem weeklyReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyReportToolStripMenuItem;
     }
 }
 
