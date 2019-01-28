@@ -59,9 +59,9 @@
             this.txtCardNo = new System.Windows.Forms.TextBox();
             this.labelCardNo = new System.Windows.Forms.Label();
             this.grpCheckOut = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnCheckOut = new System.Windows.Forms.Button();
             this.txtCardNoOut = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weeklyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -376,6 +376,16 @@
             this.grpCheckOut.TabStop = false;
             this.grpCheckOut.Text = "Checkout";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(95, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 23);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Card No.";
+            // 
             // btnCheckOut
             // 
             this.btnCheckOut.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -393,16 +403,6 @@
             this.txtCardNoOut.Name = "txtCardNoOut";
             this.txtCardNoOut.Size = new System.Drawing.Size(336, 34);
             this.txtCardNoOut.TabIndex = 29;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(95, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 23);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Card No.";
             // 
             // menuStrip1
             // 
@@ -429,6 +429,7 @@
             this.weeklyReportToolStripMenuItem.Name = "weeklyReportToolStripMenuItem";
             this.weeklyReportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.weeklyReportToolStripMenuItem.Text = "Weekly Report";
+            this.weeklyReportToolStripMenuItem.Click += new System.EventHandler(this.weeklyReportToolStripMenuItem_Click);
             // 
             // dailyReportToolStripMenuItem
             // 

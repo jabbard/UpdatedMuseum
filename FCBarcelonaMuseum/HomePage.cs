@@ -161,8 +161,8 @@ namespace FCBarcelonaMuseum
 
         public void LoadGrid()
         {
-            //try
-            //{
+            try
+            {
                 String path = @"Data.csv";
                 using (StreamReader reader = new StreamReader(path))
                 {
@@ -202,11 +202,11 @@ namespace FCBarcelonaMuseum
                     }
 
                 }
-            //}
-            //catch (Exception err)
-            //{
-            //    MessageBox.Show("Error while loading data from the csv file.");
-            //}
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Error while loading data from the csv file.");
+            }
         }
 
         private void btnClearAll_Click(object sender, EventArgs e)
@@ -306,6 +306,10 @@ namespace FCBarcelonaMuseum
 
         }
 
-
+        private void weeklyReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WeeklyReport weeklyReport = new WeeklyReport();
+            weeklyReport.Show();
+        }
     }
 }
