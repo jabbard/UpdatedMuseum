@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             this.labelMuseumName = new System.Windows.Forms.Label();
             this.groupBoxNewVisitor = new System.Windows.Forms.GroupBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -59,9 +60,9 @@
             this.txtCardNo = new System.Windows.Forms.TextBox();
             this.labelCardNo = new System.Windows.Forms.Label();
             this.grpCheckOut = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnCheckOut = new System.Windows.Forms.Button();
             this.txtCardNoOut = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weeklyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -257,7 +258,7 @@
             // 
             this.dataGridTable.AllowUserToAddRows = false;
             this.dataGridTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridTable.BackgroundColor = System.Drawing.SystemColors.ButtonShadow;
+            this.dataGridTable.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColnCardNum,
@@ -376,6 +377,16 @@
             this.grpCheckOut.TabStop = false;
             this.grpCheckOut.Text = "Checkout";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(95, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 23);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Card No.";
+            // 
             // btnCheckOut
             // 
             this.btnCheckOut.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -394,16 +405,6 @@
             this.txtCardNoOut.Size = new System.Drawing.Size(336, 34);
             this.txtCardNoOut.TabIndex = 29;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(95, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 23);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Card No.";
-            // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -411,7 +412,7 @@
             this.reportsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1538, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1538, 31);
             this.menuStrip1.TabIndex = 32;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -420,24 +421,25 @@
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.weeklyReportToolStripMenuItem,
             this.dailyReportToolStripMenuItem});
+            this.reportsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(79, 27);
             this.reportsToolStripMenuItem.Text = "Reports";
             // 
             // weeklyReportToolStripMenuItem
             // 
             this.weeklyReportToolStripMenuItem.Name = "weeklyReportToolStripMenuItem";
-            this.weeklyReportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.weeklyReportToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.weeklyReportToolStripMenuItem.Text = "Weekly Report";
             this.weeklyReportToolStripMenuItem.Click += new System.EventHandler(this.weeklyReportToolStripMenuItem_Click);
             // 
             // dailyReportToolStripMenuItem
             // 
             this.dailyReportToolStripMenuItem.Name = "dailyReportToolStripMenuItem";
-            this.dailyReportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.dailyReportToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.dailyReportToolStripMenuItem.Text = "Daily Report";
             // 
-            // Form1
+            // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -449,10 +451,11 @@
             this.Controls.Add(this.groupBoxNewVisitor);
             this.Controls.Add(this.labelMuseumName);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "HomePage";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            this.Text = "Form1";
+            this.Text = "Barca Museum";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxNewVisitor.ResumeLayout(false);
             this.groupBoxNewVisitor.PerformLayout();

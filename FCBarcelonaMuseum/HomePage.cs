@@ -96,7 +96,7 @@ namespace FCBarcelonaMuseum
                     String visitorName;
                     if (String.IsNullOrEmpty(txtName.Text.Trim()))
                     {
-                        MessageBox.Show("The name field is empty!");
+                        MessageBox.Show("The name field is empty!","Error!");
                         return;
                     }
                     else
@@ -106,7 +106,7 @@ namespace FCBarcelonaMuseum
                     String email;
                     if (String.IsNullOrEmpty(txtEmail.Text.Trim()))
                     {
-                        MessageBox.Show("The name field is empty!");
+                        MessageBox.Show("The name field is empty!","Error!");
                         return;
                     }
                     else
@@ -116,7 +116,7 @@ namespace FCBarcelonaMuseum
                     String occupation;
                     if(cmbOccupation.Text.Equals("Select an occupation"))
                     {
-                        MessageBox.Show("Please select an occupation");
+                        MessageBox.Show("Please select an occupation","Error!");
                         btnClearAll.PerformClick();
                         return; 
                     } else
@@ -153,12 +153,18 @@ namespace FCBarcelonaMuseum
                     String phNo;
                     if (String.IsNullOrEmpty(txtPhNo.Text.Trim()))
                     {
-                        MessageBox.Show("The name field is empty!");
+                        MessageBox.Show("The name field is empty!","Error!");
                         return;
                     }
                     else
                     {
                         phNo = txtPhNo.Text.Trim();
+                    }
+                    int check = ValidateRedundancy(visitorName, phNo, occupation, gender, email);
+                    if(check == 0)
+                    {
+                        MessageBox.Show("This is an old user.","Error!");
+                        return;
                     }
                     Visitors visitors = new Visitors(cardNo, visitorName, phNo, email, occupation, gender, inTime, outTime, day);
                     LsVisitors.Add(visitors);
@@ -172,17 +178,29 @@ namespace FCBarcelonaMuseum
             }
             catch (Exception f)
             {
-                MessageBox.Show("The values entered are either missing or incorrect!");
+                MessageBox.Show("The values entered are either missing or incorrect!", "Error!");
             }
 
 
         }
 
-
+        public int ValidateRedundancy(String name, String phone, String occupation, String gender, String email)
+        {
+            int value = 1;
+            foreach(Visitors v in LsVisitors)
+            {
+                if (name.Equals(v.Name) && phone.Equals(v.PhNo) && occupation.Equals(v.Occupation) && gender.Equals(v.Gender) && email.Equals(v.Email))
+                {
+                    value = 0;
+                }
+            }
+            return value;
+        }
+        
         public void LoadGrid()
         {
-            //try
-            //{
+            try
+            {
                 String path = @"Data.csv";
                 using (StreamReader reader = new StreamReader(path))
                 {
@@ -222,11 +240,11 @@ namespace FCBarcelonaMuseum
                     }
 
                 }
-            //}
-            //catch (Exception err)
-            //{
-            //    MessageBox.Show("Error while loading data from the csv file.");
-            //}
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Error while loading data from the csv file.","Error!");
+            }
         }
 
         private void btnClearAll_Click(object sender, EventArgs e)
@@ -272,7 +290,7 @@ namespace FCBarcelonaMuseum
                         txtCardNo.Text = "";
                     } else if (v.CardNo == cardNo && v.OutTime.Equals(default(DateTime)))
                     {
-                        MessageBox.Show("This user has not exited previously.");
+                        MessageBox.Show("This user has not exited previously.","Error!");
                         txtCardNo.Text = "";
                         return;
                     }
@@ -284,7 +302,7 @@ namespace FCBarcelonaMuseum
                 LoadGrid();
             } catch (Exception a)
             {
-                MessageBox.Show("Enter correct value!");
+                MessageBox.Show("Enter correct value!","Error!");
                 txtCardNo.Text = "";
             }
         }
@@ -309,7 +327,7 @@ namespace FCBarcelonaMuseum
                         else if(cardNo == LsVisitors[currentLine-1].CardNo && !LsVisitors[currentLine - 1].OutTime.Equals(default(DateTime)))
                         {
                             writer.WriteLine(lines[currentLine - 1]);
-                            MessageBox.Show("The user has already checked out.");
+                            MessageBox.Show("The user has already checked out.","Error!");
                             txtCardNoOut.Text = "";
                         } else
                         {
@@ -323,7 +341,7 @@ namespace FCBarcelonaMuseum
             }
             catch (Exception error)
             {
-                MessageBox.Show("btnCheckOut");
+                MessageBox.Show("Cannot checkout!", "Error!");
             }
 
 
@@ -334,19 +352,6 @@ namespace FCBarcelonaMuseum
 
         }
 
-        private void dataGridTable_SelectionChanged(object sender, EventArgs e)
-        {
-            //try
-            //{
-                if (dataGridTable.Focused)
-                {
-                    String cN = dataGridTable.CurrentRow.Cells["ColnCardNum"].Value.ToString();
-                    txtCardNoOut.Text = cN;
-                }
-            //} catch(Exception errorr)
-            //{
-            //    MessageBox.Show("");
-            //}
-        }
+        
     }
 }
