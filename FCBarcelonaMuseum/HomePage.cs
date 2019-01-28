@@ -46,7 +46,7 @@ namespace FCBarcelonaMuseum
                 
                 if ((!rx.IsMatch(txtPhNo.Text) || String.IsNullOrEmpty(txtPhNo.Text.Trim())) || cmbOccupation.SelectedText.Equals("Select an occupation") || (!rgx.IsMatch(txtEmail.Text) || String.IsNullOrEmpty(txtEmail.Text.Trim())))
                 {
-                    MessageBox.Show("Please enter the correct data.");
+                    MessageBox.Show("Please enter the correct data.","Error!");
                     btnClearAll.PerformClick();
                 }
                 else
